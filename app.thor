@@ -9,7 +9,7 @@ class App < Thor
   desc 'wishlist-for-sale', 'Wishlist Items for Sale'
   method_option :username, aliases: '-u', desc: 'Discogs Username'
   method_option :country_code, aliases: '-c', desc: 'Country Code (used for localised sales)'
-  def wishlist_sales
+  def wishlist_for_sale
     Commands::WishlistForSale.new(
       username: options[:username],
       country: ISO3166::Country.new(options[:country_code])
