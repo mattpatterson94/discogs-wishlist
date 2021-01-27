@@ -1,8 +1,9 @@
 require 'terminal-table'
 
 class WishlistForSalePrinter
-  def initialize(wishlist:)
+  def initialize(wishlist:, country:)
     @wishlist = wishlist
+    @country = country
   end
 
   def print!
@@ -13,7 +14,7 @@ class WishlistForSalePrinter
 
   private
 
-  attr_reader :wishlist
+  attr_reader :wishlist, :country
 
   def populate_table
     wishlist.each do |album|
@@ -22,10 +23,9 @@ class WishlistForSalePrinter
           album.title,
           album.artist,
           album.variations.length,
-          album.num_for_sale,
-          album.lowest_price,
-          album.num_for_sale_localised,
-          album.lowest_price_localised ? "$#{album.lowest_price_localised}" : ''
+          album.items_for_sale_count,
+          album.lowest_price_cost,
+          album.lowest_price_shipping
         ]
       )
     end
@@ -44,10 +44,9 @@ class WishlistForSalePrinter
       'Title',
       'Artist',
       'Variations',
-      'For Sale',
-      'Lowest Price',
-      'For Sale (Localised)',
-      'Lowest Price (Localised)'
+      "For Sale (#{country.alpha2})",
+      "Lowest Price (#{country.alpha2})",
+      "Shipping (#{country.alpha2})"
     ]
   end
 end

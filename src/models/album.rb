@@ -17,33 +17,28 @@ class Album
     @artist ||= variations.first&.artist
   end
 
-  def year
-    @year ||= variations.first&.year
-  end
-
   def lowest_price
-    @lowest_price ||= saleable_variations.map(&:lowest_price).compact.minmax.first
-  end
+    @lowest_price ||= begin
+      return nil unless items_for_sale_count.positive?
 
-  def num_for_sale
-    @num_for_sale ||= saleable_variations.sum(&:num_for_sale)
-  end
-
-  def lowest_price_localised
-    @lowest_price_localised ||= begin
-      first = saleable_variations.map(&:lowest_price_localised).compact.minmax.first
-      return nil if first.nil?
-
-      first.to_f
+      saleable_variations.map(&:lowest_price).min_by { |price| price[:price] }
     end
   end
 
-  def num_for_sale_localised
-    @num_for_sale_localised ||= saleable_variations.sum(&:num_for_sale_localised)
+  def lowest_price_cost
+    return nil if lowest_price.nil?
+
+    @lowest_price_cost ||= lowest_price[:price].format
   end
 
-  def to_s
-    "#{artist} - #{title} (#{year})"
+  def lowest_price_shipping
+    return nil if lowest_price.nil?
+
+    @lowest_price_shipping ||= lowest_price[:shipping].format
+  end
+
+  def items_for_sale_count
+    @items_for_sale_count ||= saleable_variations.sum(&:items_for_sale_count)
   end
 
   def saleable_variations

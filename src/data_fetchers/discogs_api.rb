@@ -3,12 +3,16 @@ require 'discogs'
 class DiscogsApi
   MAX_RESULTS_PER_PAGE = 100
 
+  def fetch_authenticated_user_identity
+    discogs_api.get_identity
+  end
+
   def fetch_by_username(username)
     discogs_api.get_user_wantlist(username, per_page: MAX_RESULTS_PER_PAGE).wants
   end
 
-  def get_release_by_id(id)
-    discogs_api.get_release(id)
+  def get_release_by_id(id, currency)
+    discogs_api.get_release(id, currency)
   end
 
   private
