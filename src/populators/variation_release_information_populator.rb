@@ -1,8 +1,8 @@
 require 'limiter'
 
-require_relative 'discogs_api'
+require_relative '../data_fetchers/discogs_api'
 
-class PopulateVariationReleaseInformation
+class VariationReleaseInformationPopulator
   extend Limiter::Mixin
 
   limit_method :find_release, rate: 40

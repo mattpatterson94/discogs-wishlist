@@ -1,6 +1,6 @@
 require 'terminal-table'
 
-class PrintWishlist
+class WishlistForSalePrinter
   def initialize(wishlist:)
     @wishlist = wishlist
   end

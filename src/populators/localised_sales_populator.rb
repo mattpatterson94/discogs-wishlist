@@ -1,11 +1,10 @@
 require 'limiter'
 require 'httparty'
 require 'nokogiri'
-require 'pry'
 
-require_relative 'discogs_web'
+require_relative '../data_fetchers/discogs_web'
 
-class PopulateLocalisedSales
+class LocalisedSalesPopulator
   def initialize(wishlist:)
     @wishlist = wishlist
   end

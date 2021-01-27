@@ -1,6 +1,6 @@
-require_relative 'discogs_api'
+require_relative '../data_fetchers/discogs_api'
 
-class PopulateWishlist
+class WishlistPopulator
   def initialize(wishlist:, username:)
     @wishlist = wishlist
     @username = username
