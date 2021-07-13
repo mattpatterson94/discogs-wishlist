@@ -1,5 +1,5 @@
-require 'nokogiri'
-require 'monetize'
+require "nokogiri"
+require "monetize"
 
 class ItemPriceParser
   def initialize(html, country)
@@ -11,8 +11,8 @@ class ItemPriceParser
     return [] unless rows.length.positive?
 
     rows.map do |row|
-      price = row.search('.item_price .price').text.gsub(/[^\d\.]+/, '')
-      shipping = row.search('.item_shipping').first.text.gsub(/[^\d\.]+/, '')
+      price = row.search(".item_price .price").text.gsub(/[^\d.]+/, "")
+      shipping = row.search(".item_shipping").first.text.gsub(/[^\d.]+/, "")
 
       return nil if price.nil? || shipping.nil?
 
@@ -28,7 +28,7 @@ class ItemPriceParser
   attr_reader :html, :country
 
   def rows
-    @rows ||= parsed_html.search('.mpitems tbody tr')
+    @rows ||= parsed_html.search(".mpitems tbody tr")
   end
 
   def parsed_html

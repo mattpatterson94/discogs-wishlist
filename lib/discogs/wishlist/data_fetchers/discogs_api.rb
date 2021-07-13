@@ -1,4 +1,4 @@
-require 'discogs'
+require "discogs"
 
 class DiscogsApi
   MAX_RESULTS_PER_PAGE = 100
@@ -22,10 +22,10 @@ class DiscogsApi
   end
 
   def discogs_app_name
-    ENV['DISCOGS_APP_NAME']
+    ENV["DISCOGS_APP_NAME"] || "discogs-wishlist"
   end
 
   def discogs_user_token
-    ENV['DISCOGS_USER_TOKEN']
+    ENV["DISCOGS_USER_TOKEN"]
   end
 end

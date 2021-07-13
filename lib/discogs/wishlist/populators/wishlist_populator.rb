@@ -1,13 +1,12 @@
-require_relative '../data_fetchers/discogs_api'
+require_relative "../data_fetchers/discogs_api"
 
 class WishlistPopulator
-  def initialize(wishlist:, username:)
+  def initialize(wishlist:)
     @wishlist = wishlist
-    @username = username
   end
 
   def populate!
-    wantlist = discogs_api.fetch_by_username(username)
+    wantlist = discogs_api.fetch_by_username(wishlist.username)
 
     wantlist.each do |wantlist_item|
       wishlist.add_to_wishlist(wantlist_item)
@@ -16,7 +15,7 @@ class WishlistPopulator
 
   private
 
-  attr_reader :wishlist, :username
+  attr_reader :wishlist
 
   def discogs_api
     @discogs_api ||= DiscogsApi.new

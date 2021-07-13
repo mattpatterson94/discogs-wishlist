@@ -9,8 +9,10 @@ class AlbumVariation
     @items_for_sale.length.positive?
   end
 
-  def add_items_for_sale(items_for_sale)
-    @items_for_sale = items_for_sale.compact.sort_by { |info| info[:price] }
+  def add_items_for_sale(for_sale_items)
+    new_items = items_for_sale.dup + for_sale_items.compact.sort_by { |info| info[:price] }
+
+    @items_for_sale = new_items
   end
 
   def id
@@ -38,10 +40,14 @@ class AlbumVariation
   end
 
   def artist
-    variation.basic_information.artists.map(&:name)&.join(', ')
+    variation.basic_information.artists.map(&:name)&.join(", ")
   end
 
   private
 
   attr_reader :variation
+
+  def items_for_sale
+    @items_for_sale ||= []
+  end
 end

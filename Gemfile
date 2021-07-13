@@ -2,14 +2,9 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+# Specify your gem's dependencies in discogs-wishlist.gemspec
+gemspec
 
-gem 'countries'
-gem 'discogs-wrapper'
-gem 'nokogiri'
-gem 'httparty'
-gem 'monetize'
-gem 'money'
-gem 'pry'
-gem 'ruby-limiter'
-gem 'terminal-table'
+gem "rake", "~> 13.0"
+
+gem "rspec", "~> 3.0"

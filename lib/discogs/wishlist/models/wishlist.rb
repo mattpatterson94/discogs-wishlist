@@ -1,8 +1,15 @@
-require_relative 'album'
-require_relative 'album_variation'
+require_relative "album"
+require_relative "album_variation"
 
 class Wishlist
   include Enumerable
+
+  attr_reader :username, :country
+
+  def initialize(username:, country:)
+    @username = username
+    @country = country
+  end
 
   def add_to_wishlist(item)
     variation = AlbumVariation.new(item)

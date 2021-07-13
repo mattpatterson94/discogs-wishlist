@@ -2,8 +2,8 @@ module OutputSuppressor
   def suppress_output
     original_stdout = $stdout.clone
     original_stderr = $stderr.clone
-    $stderr.reopen File.new('/dev/null', 'w')
-    $stdout.reopen File.new('/dev/null', 'w')
+    $stderr.reopen File.new("/dev/null", "w")
+    $stdout.reopen File.new("/dev/null", "w")
     yield
   ensure
     $stdout.reopen original_stdout
