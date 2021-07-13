@@ -12,11 +12,15 @@ gem 'discogs-wishlist'
 
 ### Generate Wishlist
 
-wishlist-for-sale --username mattpatterson
+```bash
+discogs-wishlist print mattpatterson
+```
 
 #### With Sale Information
 
-wishlist-for-sale --username mattpatterson --for-sale --country-code AU
+```bash
+discogs-wishlist print mattpatterson --for-sale --country-code AU
+```
 
 ## Development
 
